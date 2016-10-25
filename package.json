@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start-node": "node ./bin/www",
+    "start-node": "tsc && concurrently \"tsc -w\" \"nodemon ./bin/www\"",
     "start": "tsc && concurrently \"tsc -w\" \"lite-server\" ",
     "lite": "lite-server",
     "tsc": "tsc",
@@ -27,6 +27,7 @@
     "debug": "~2.2.0",
     "ejs": "^2.5.2",
     "express": "~4.13.4",
+    "express-validator": "^2.21.0",
     "jade": "~1.11.0",
     "mongoose": "^4.6.5",
     "morgan": "~1.7.0",

@@ -26,6 +26,19 @@ router.get('/', function(req, res, next) {
 });
 
 router.post('/', function(req, res, next) {
+
+  req.assert('firstName', 'First name can not be empty!').notEmpty();
+  req.assert('lastName', 'Last name can not be empty!').notEmpty();
+
+    var errors = req.validationErrors();
+    if(errors) {
+      res.render('newstudent.jade', {errors: errors, countries: ["USA", "Nepal"],
+    programs: ["ComPro", "MBA", "Accounting"],
+    entries: ["April,2016", "August,2016"]});
+      return;
+    }
+
+
   //checkConnection();
   var newStudent = new Student({
       firstName: req.body.firstName,
