@@ -9,11 +9,19 @@ block content
       th Country
       th Major
       th Entry
-    -for(let i=0;i<students.length;i++){
+      th Modify
+      th Delete
+    -for(let i=0; i<students.length; i++){
     tr
       td=students[i].firstName
       td=students[i].lastName
       td=students[i].country
       td=students[i].major
       td=students[i].entry
+      td
+        a(href="/api/student") Edit
+      td
+        a(href="/api/student") Delete
     -}
+
+  students
