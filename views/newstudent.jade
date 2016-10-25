@@ -1,0 +1,46 @@
+extends layout
+
+block content
+  h1 Add New Student
+  p Input student information below:
+  p
+    form(action="/api/student", method="post")
+      table
+        tr
+          td
+            |First Name:
+          td
+            input(type="text", name="firstName",placeholder="First Name")
+        tr
+          td
+            |Last Name:
+          td
+            input(type="text", name="lastName",placeholder="Last Name")
+        tr
+          td
+            |Country:
+          td
+            select(name="country")
+              -for(let i=0;i<countries.length;i++) {
+                option
+                  =countries[i]
+              -}
+        tr
+          td
+            |Major:
+          td
+            select(name="major")
+              -for(let i=0;i<programs.length;i++) {
+                option
+                  =programs[i]
+              -}
+        tr
+          td
+            |Entry:
+          td
+            select(name="entry")
+              -for(let i=0;i<entries.length;i++) {
+                option
+                  =entries[i]
+              -}
+      input(type="submit")
