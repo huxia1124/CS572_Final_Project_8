@@ -9,7 +9,7 @@
       <th> Delete</th>
     </tr>
 
-<!--
+
     <tr *ngFor="let student of students">
       <td>{{student.firstName}}</td>
       <td>{{student.lastName}}</td>
@@ -17,12 +17,12 @@
       <td>{{student.major}}</td>
       <td>{{student.entry}}</td>
       <td>
-        <a href="/api/student">Edit</a>
+        <a href="#">Edit</a>
       </td>
       <td>
-        <a href="/api/student">Delete</a>
+        <a href="#" (click)="deleteStudent(student._id)">Delete</a>
       </td>
     </tr>
-    -->
+    
     
 </table>

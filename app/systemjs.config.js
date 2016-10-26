@@ -33,6 +33,10 @@
         main: './main.js',
         defaultExtension: 'js'
       },
+      students: {
+        main: '../../app/students.main.js',
+        defaultExtension: 'js'
+      },     
       rxjs: {
         defaultExtension: 'js'
       },

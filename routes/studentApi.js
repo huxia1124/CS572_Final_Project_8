@@ -24,8 +24,10 @@ function checkConnection() {
 router.get('/', function(req, res, next) {
     Student.find({}, function(err, students) {
     if(err) throw err;
-    res.json(students["_body"]);
-  })
+    //res.writeHead(200, {"Content-Type": "application/json"});
+    res.json(students);
+    return;
+  }); 
 });
 
 router.post('/', function(req, res, next) {
@@ -39,7 +41,7 @@ router.post('/', function(req, res, next) {
     programs: ["ComPro", "MBA", "Accounting"],
     entries: ["April,2016", "August,2016"]});
       return;
-    }
+    } 
 
 
   //checkConnection();
@@ -57,5 +59,14 @@ router.post('/', function(req, res, next) {
   })
 });
 
+router.delete('/:id', function(req, res, next) {
+
+    Student.remove({"_id" : req.params.id}, function(err) {
+    if(err) throw err;
+    //res.writeHead(200, {"Content-Type": "application/json"});
+    res.end("OK");
+    return;
+  }); 
+});
 
 module.exports = router;

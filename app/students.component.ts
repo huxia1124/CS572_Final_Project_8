@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Student }  from './Student';
 import { OnInit }   from '@angular/core';
-import { Http }   from '@angular/http';
+import { Http, Headers }   from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 
 @Component({
@@ -17,13 +17,26 @@ export class StudentsComponent extends OnInit{
   }
 
   ngOnInit() : void {
-   /* this.http.get(this.studentsUrl).toPromise().then(
-      response => {
+    let headers = new Headers();
+    headers.append("Cache-control", "no-cache");
+    headers.append("Cache-control", "no-store");
+    headers.append("Pragma", "no-cache");
+    headers.append("Expires", "0");
 
-        //this.students = response.json().data as Student[];
-        //console.log(JSON.stringify(this.students));
+    this.http.get(this.studentsUrl, {headers: headers}).toPromise().then(
+      response => {
+        let body = response.json();
+        
+        this.students = response.json() as Student[];
+        console.log(JSON.stringify(this.students));
       });
-      */
+      
+  }
+
+  deleteStudent(id:string) : void {
+     this.http.delete(this.studentsUrl + "/" + id).toPromise().then(
+       ()=>{this.students = this.students.filter(s => s["_id"] != id)} 
+     )
   }
 
  }

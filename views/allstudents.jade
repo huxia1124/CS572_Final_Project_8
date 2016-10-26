@@ -2,28 +2,7 @@ extends layout
 
 block content
   script
-    | System.import('app').catch(function(err){ console.error(err); });
+    | System.import('students').catch(function(err){ console.error(err); });
   h1 All Students
-  table(border="1")
-    tr
-      th First Name
-      th Last Name
-      th Country
-      th Major
-      th Entry
-      th Modify
-      th Delete
-    -for(let i=0; i<students.length; i++){
-    tr
-      td=students[i].firstName
-      td=students[i].lastName
-      td=students[i].country
-      td=students[i].major
-      td=students[i].entry
-      td
-        a(href="/api/student") Edit
-      td
-        a(href="/api/student") Delete
-    -}
 
   students loading...
