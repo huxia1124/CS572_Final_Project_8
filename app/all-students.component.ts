@@ -6,14 +6,12 @@ import { Router } from '@angular/router';
 import 'rxjs/add/operator/toPromise';
 
 @Component({
-  //selector: 'students',
     moduleId: module.id,
-    selector: 'courseDetails',
-    templateUrl: './views/student.html',
-    styleUrls: ['./css/course.component.css']
-  //templateUrl: '/app/students.component.html'
+    selector: 'studentsList',
+    styleUrls: ['./css/course.component.css'],
+    templateUrl: '/app/students.component.html'
 })
-export class StudentsComponent extends OnInit{
+export class AllStudentsComponent extends OnInit{
   students: Student[];
   studentsUrl = "/api/student";
 
@@ -22,7 +20,20 @@ export class StudentsComponent extends OnInit{
   }
 
   ngOnInit() : void {
+    let headers = new Headers();
+    headers.append("Cache-control", "no-cache");
+    headers.append("Cache-control", "no-store");
+    headers.append("Pragma", "no-cache");
+    headers.append("Expires", "0");
 
+    this.http.get(this.studentsUrl, {headers: headers}).toPromise().then(
+      response => {
+        let body = response.json();
+        
+        this.students = response.json() as Student[];
+        console.log(JSON.stringify(this.students));
+      });
+      
   }
 
   deleteStudent(id:string) : void {
@@ -31,8 +42,8 @@ export class StudentsComponent extends OnInit{
      )
   }
 
-    gotoList():void {
-        let link = ['/viewAllStudents'];
+    gotoDetail():void {
+        let link = ['/viewDetails'];
         this.router.navigate(link);
     }
 

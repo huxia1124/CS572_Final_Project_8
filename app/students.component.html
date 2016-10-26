@@ -1,4 +1,7 @@
-  <table border="1">
+  <h1>All Students</h1>
+  <p>List of students:</p>
+  <table border="1" class="table">
+    <thead>
     <tr>
       <th> First Name </th>
       <th> Last Name</th>
@@ -8,7 +11,7 @@
       <th> Modify</th>
       <th> Delete</th>
     </tr>
-
+    </thead>
 
     <tr *ngFor="let student of students">
       <td>{{student.firstName}}</td>
@@ -17,10 +20,10 @@
       <td>{{student.major}}</td>
       <td>{{student.entry}}</td>
       <td>
-        <a href="#">Edit</a>
+        <button class="btn btn-default" (click)="deleteStudent(student._id)">Edit</button>
       </td>
       <td>
-        <a href="#" (click)="deleteStudent(student._id)">Delete</a>
+        <button class="btn btn-default" (click)="deleteStudent(student._id)">Delete</button>
       </td>
     </tr>
     
