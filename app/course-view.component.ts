@@ -18,14 +18,30 @@ export class CourseViewComponent implements OnInit{
         private route: ActivatedRoute,
         private location: Location,
         private courseService : CourseService
-    ) {
-        this.courseService.getCourses()
-            .then(course=>this.courses=course);
+    )
+    {
 
-        /*this.courseService.getCourses()
-            .subscribe(course=> {
-                this.courses=course;
-            });*/
+        this.courseService.getCourses()
+            .then(
+                response => {
+                    let body = response.json();
+
+                    this.courses = response.json() as Course[];
+                    console.log(JSON.stringify(this.courses));
+                })
+
+    }
+    deleteCource(id){
+        var course = this.courses;
+        this.courseService.daleteCourse(id).subscribe(data=>{
+            if(data.n == 1){
+                for(var i=0; i<course.length;i++){
+                    if(course[i]._id == id){
+                        course.splice(i,1);
+                    }
+                }
+            }
+        })
     }
     /*getHeroes(): void {
         this.heroService

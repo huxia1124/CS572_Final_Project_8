@@ -10,4 +10,24 @@ router.get('/', function(req, res, next) {
     });
 });
 
+router.post('/', function(req, res, next) {
+    var newCourse = new Course({
+        department: req.body.department,
+        code: req.body.code,
+        title: req.body.title
+    });
+    //console.log("newCourse" + newCourse)
+    newCourse.save(function(err,course) {
+        if(err) throw err;
+        res.json(course);
+    })
+});
+
+router.delete('/:id', function(req, res, next) {
+    Course.remove({"_id" : req.params.id}, function(err,course) {
+        if(err) throw err;
+        res.json(course);
+    });
+});
+
 module.exports = router;

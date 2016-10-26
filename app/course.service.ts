@@ -6,29 +6,27 @@ import {Course} from './model/Course'
 @Injectable()
 export class CourseService{
     private headers = new Headers({'Content-Type': 'application/json'});
-    private courseUrl = 'api/course';  // URL to web api
-
+    courses: Course[];
     constructor(private http: Http) { }
 
-    getCourses(): Promise<Course[]> {
-        return this.http.get(this.courseUrl)
-            .toPromise()
-            .then(response => response.json().data as Course[])
-            .catch(this.handleError);
+    getCourses(){
+        let headers = new Headers();
+        headers.append("Cache-control", "no-cache");
+        headers.append("Cache-control", "no-store");
+        headers.append("Pragma", "no-cache");
+        headers.append("Expires", "0");
+        return this.http.get('/api/course', {headers: headers}).toPromise();
     }
-    /*getCourses(){
-        return this.http.get('/api/course')
-            .map(res => res.json());
-    }*/
+    addCourses(newCourse){
+        let headers = new Headers();
+        headers.append('Content-Type', 'application/json')
+        return this.http.post('/api/course',JSON.stringify( newCourse),{headers:headers})
+            .map(res=>res.json());
+    }
 
-    /*getHeroes(): Promise<Hero[]> {
-        return this.http.get(this.heroesUrl)
-            .toPromise()
-            .then(response => response.json().data as Hero[])
-            .catch(this.handleError);
-    }*/
-    private handleError(error: any): Promise<any> {
-        console.error('An error occurred', error); // for demo purposes only
-        return Promise.reject(error.message || error);
+    daleteCourse(id){
+        return this.http.delete('/api/course/' + id)
+            .map(res=>res.json());
     }
+
 }

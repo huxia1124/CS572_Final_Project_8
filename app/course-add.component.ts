@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core'
 import { ActivatedRoute, Params }  from '@angular/router'
 import { Location }   from '@angular/common'
 import {Course} from './model/Course'
+import {CourseService} from './course.service'
 
 @Component({
     moduleId: module.id,
@@ -12,22 +13,30 @@ import {Course} from './model/Course'
 
 export class CourseAddComponent implements OnInit{
     @Input()
-
-    quantity = 1;
+    courses:Course[];
+    department: string;
+    code: string;
+    title: string;
 
     constructor(
         private route: ActivatedRoute,
-        private location: Location
+        private location: Location,
+        private courseService : CourseService
     ) {}
 
-    registerUser(user) {
-        //let data = JSON.stringify(user);
-        /*this.http.post(CREATE_USER_ENDPOINT, data)
-            .subscribe(
-                data => alert('Your account has been created!'),
-                error => alert(error.json().message)
-            );*/
-        console.dir(user);
+    addCourse(course) {
+        var newCourse={
+            department : this.department,
+            code : this.code,
+            title : this.title
+        }
+        this.courseService.addCourses(newCourse)
+            .subscribe(course=>{
+                this.courses=course;
+                this.department='',
+                this.code='',
+                this.title=''
+            });
     }
 
     ngOnInit() : void {

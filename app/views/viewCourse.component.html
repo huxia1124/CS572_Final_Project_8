@@ -16,8 +16,7 @@
             <td>{{course.code}}</td>
             <td>{{course.title}}</td>
             <td>{{course.department}}</td>
-            <td>Edit</td>
-            <td>Delete</td>
+            <td><input type="button" (click)="deleteCource(course._id)" value="Delete" class="btn btn-danger"></td>
         </tr>
         </tbody>
     </table>
