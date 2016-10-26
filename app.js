@@ -29,8 +29,6 @@ app.use(cookieParser());
 app.use(validator());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/node_modules', express.static(path.join(__dirname, 'node_modules')));
-app.use('/node_modules/reflect-metadata', express.static(path.join(__dirname, 'node_modules/reflect-metadata')));
-app.use('/node_modules/systemjs', express.static(path.join(__dirname, 'node_modules/systemjs')));
 app.use('/app', express.static(path.join(__dirname, 'app')));
 
 
