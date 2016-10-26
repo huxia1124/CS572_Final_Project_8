@@ -1,11 +1,13 @@
 var express = require('express');
 var router = express.Router();
+var Course = require('../model/courseSchema');
+require('../mongoconnection');
 
-//Api implementations
-router.get('/api', function(req, res, next) {
-    res.send('course api');
+router.get('/', function(req, res, next) {
+    Course.find({}, function(err, courses) {
+        if(err) throw err;
+        res.json(courses);
+    });
 });
-
-
 
 module.exports = router;

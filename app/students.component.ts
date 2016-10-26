@@ -2,17 +2,22 @@ import { Component } from '@angular/core';
 import { Student }  from './Student';
 import { OnInit }   from '@angular/core';
 import { Http, Headers }   from '@angular/http';
+import { Router } from '@angular/router';
 import 'rxjs/add/operator/toPromise';
 
 @Component({
-  selector: 'students',
-  templateUrl: '/app/students.component.html'
+  //selector: 'students',
+    moduleId: module.id,
+    selector: 'courseDetails',
+    templateUrl: './views/student.html',
+    styleUrls: ['./css/course.component.css']
+  //templateUrl: '/app/students.component.html'
 })
 export class StudentsComponent extends OnInit{
   students: Student[];
   studentsUrl = "/api/student";
 
-  constructor(private http:Http) {
+  constructor(private router: Router, private http:Http) {
     super();
   }
 
@@ -38,5 +43,15 @@ export class StudentsComponent extends OnInit{
        ()=>{this.students = this.students.filter(s => s["_id"] != id)} 
      )
   }
+
+    gotoDetail():void {
+        let link = ['/viewDetails'];
+        this.router.navigate(link);
+    }
+
+    gotoAdd():void {
+        let link = ['/addStudent'];
+        this.router.navigate(link);
+    }
 
  }
