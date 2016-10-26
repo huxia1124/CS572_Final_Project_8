@@ -22,7 +22,10 @@ function checkConnection() {
 */
 //Api implementations
 router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
+    Student.find({}, function(err, students) {
+    if(err) throw err;
+    res.json(students["_body"]);
+  })
 });
 
 router.post('/', function(req, res, next) {

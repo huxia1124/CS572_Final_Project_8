@@ -1,6 +1,8 @@
 extends layout
 
 block content
+  script
+    | System.import('app').catch(function(err){ console.error(err); });
   h1 All Students
   table(border="1")
     tr
@@ -24,4 +26,4 @@ block content
         a(href="/api/student") Delete
     -}
 
-  students
+  students loading...
