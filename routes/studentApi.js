@@ -32,6 +32,7 @@ router.get('/', function(req, res, next) {
 
 router.post('/', function(req, res, next) {
 
+console.log(JSON.stringify(req.body));
   req.assert('firstName', 'First name can not be empty!').notEmpty();
   req.assert('lastName', 'Last name can not be empty!').notEmpty();
 

@@ -11,11 +11,14 @@ import {CourseViewComponent} from './course-view.component'
 import {CourseService} from './course.service'
 import { FormsModule,ReactiveFormsModule  }   from '@angular/forms';
 import './rxjs-extensions';
+import { AllStudentsComponent } from './all-students.component';
+import { AddStudentComponent } from './add-student.component';
 
 //
 @NgModule({
   imports:      [ BrowserModule, HttpModule ,AppRoutingModule,FormsModule,ReactiveFormsModule ],
-  declarations: [ AppComponent, StudentsComponent, CoursesComponent, CourseAddComponent, CourseViewComponent ],
+  declarations: [ AppComponent, StudentsComponent, CoursesComponent, CourseAddComponent, CourseViewComponent
+  , AllStudentsComponent, AddStudentComponent ],
   bootstrap:    [ AppComponent],
   providers : [CourseService]
 })
